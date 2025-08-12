@@ -3,17 +3,20 @@ import { computed, watchEffect } from 'vue';
 import { Decimal } from '@cosmjs/math';
 
 import { useBalanceFetcher } from '@/composables/useBalanceFetcher';
+import { useFractionalDigits } from '@/composables/useFractionalDigits';
 import { useWallet } from '@/composables/useWallet';
 
 import Input from './Input.vue';
 
-import { fractionalDigits } from '@/utility/atomics';
+import { defaultFractionalDigits } from '@/utility/atomics';
 
 const emit = defineEmits(['update:modelValue', 'onValidityChange']);
 
+const model = defineModel<number | string>({ default: Decimal.fromAtomics('1', defaultFractionalDigits).toFloatApproximation() });
+
+const fractionalDigits = useFractionalDigits();
 const min = computed(() => Decimal.fromAtomics('1', fractionalDigits).toFloatApproximation());
 const step = computed(() => Decimal.fromAtomics('1', fractionalDigits).toFloatApproximation());
-const model = defineModel<number | string>({ default: Decimal.fromAtomics('1', fractionalDigits).toFloatApproximation() });
 
 const wallet = useWallet();
 const balanceFetcher = useBalanceFetcher();
