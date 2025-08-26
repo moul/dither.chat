@@ -8,11 +8,9 @@ import { useWallet } from '@/composables/useWallet';
 
 import Input from './Input.vue';
 
-import { defaultFractionalDigits } from '@/utility/atomics';
-
 const emit = defineEmits(['update:modelValue', 'onValidityChange']);
 
-const model = defineModel<number | string>({ default: Decimal.fromAtomics('1', defaultFractionalDigits).toFloatApproximation() });
+const model = defineModel<number | string>({ default: Decimal.fromAtomics('1', 0).toFloatApproximation() });
 
 const fractionalDigits = useFractionalDigits();
 const min = computed(() => Decimal.fromAtomics('1', fractionalDigits).toFloatApproximation());

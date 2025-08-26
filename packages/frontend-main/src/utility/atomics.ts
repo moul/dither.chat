@@ -1,6 +1,5 @@
 import { Decimal } from '@cosmjs/math';
 
-export const defaultFractionalDigits = 6;
 export const defaultMinimalCoinDenom = 'uphoton';
 
 export const addAtomics = (firstAtomicsAmount: string, secondAtomicsAmount: string) => {
