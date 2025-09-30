@@ -13,8 +13,8 @@ interface Config {
 
 const defaultConfig: Config = {
     envConfigs: envConfigs,
-    selectedChain: 'testnet',
-    defaultAmountAtomics: Decimal.fromUserInput('1', 0).atomics,
+    selectedChain: import.meta.env.ENVIRONMENT_TYPE ?? 'mainnet',
+    defaultAmountAtomics: Decimal.fromUserInput('0.1', 0).atomics,
     defaultAmountEnabled: false,
 };
 
